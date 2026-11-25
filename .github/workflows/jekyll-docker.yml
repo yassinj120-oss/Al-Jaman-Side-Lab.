@@ -25,19 +25,46 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Install dependencies
-        run: npm install
+      - name: Create package.json
+        run: |
+          cat > package.json << 'EOF'
+          {
+            "name": "al-juman-lab",
+            "version": "1.0.0",
+            "private": true,
+            "description": "Al-Juman Laboratory App",
+            "scripts": {
+              "build": "echo Web app ready"
+            }
+          }
+          EOF
 
       - name: Install Capacitor
-        run: npm install @capacitor/core @capacitor/cli @capacitor/android
+        run: |
+          npm install @capacitor/core@7
+          npm install --save-dev @capacitor/cli@7
+          npm install @capacitor/android@7
 
       - name: Prepare web files
         run: |
-          mkdir -p www
-          cp index.html www/
-          cp style.css www/ 2>/dev/null || true
-          cp -r css www/ 2>/dev/null || true
-          cp -r js www/ 2>/dev/null || true
+          mkdir -p www/css
+          mkdir -p www/js
+
+          cp index.html www/index.html
+
+          cp style.css www/css/style.css
+
+          cp app.js www/js/app.js
+          cp database.js www/js/database.js
+          cp tests.js www/js/tests.js
+          cp patients.js www/js/patients.js
+          cp reports.js www/js/reports.js
+          cp statistics.js www/js/statistics.js
+          cp settings.js www/js/settings.js
+          cp backup.js www/js/backup.js
+
+          cp manifest.json www/ 2>/dev/null || true
+          cp service-worker.js www/ 2>/dev/null || true
 
       - name: Create Capacitor config
         run: |
