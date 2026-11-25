@@ -23,52 +23,21 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 21
+          java-version: 17
 
-      - name: Create package.json
-        run: |
-          cat > package.json << 'EOF'
-          {
-            "name": "al-juman-lab",
-            "version": "1.0.0",
-            "private": true,
-            "description": "Al-Juman Al-Janabi Laboratory App",
-            "scripts": {
-              "build": "echo Web app ready"
-            }
-          }
-          EOF
+      - name: Install dependencies
+        run: npm install
 
       - name: Install Capacitor
-        run: |
-          npm install
-          npm install @capacitor/core @capacitor/android
-          npm install --save-dev @capacitor/cli
+        run: npm install @capacitor/core @capacitor/cli @capacitor/android
 
       - name: Prepare web files
         run: |
-          mkdir -p www/css
-          mkdir -p www/js
-
+          mkdir -p www
           cp index.html www/
-
-          if [ -f style.css ]; then
-            cp style.css www/css/style.css
-          fi
-
-          for file in app.js database.js tests.js patients.js reports.js statistics.js settings.js backup.js; do
-            if [ -f "$file" ]; then
-              cp "$file" www/js/
-            fi
-          done
-
-          if [ -f manifest.json ]; then
-            cp manifest.json www/
-          fi
-
-          if [ -f service-worker.js ]; then
-            cp service-worker.js www/
-          fi
+          cp style.css www/ 2>/dev/null || true
+          cp -r css www/ 2>/dev/null || true
+          cp -r js www/ 2>/dev/null || true
 
       - name: Create Capacitor config
         run: |
@@ -76,8 +45,7 @@ jobs:
           {
             "appId": "com.aljuman.lab",
             "appName": "Al-Juman Laboratory",
-            "webDir": "www",
-            "bundledWebRuntime": false
+            "webDir": "www"
           }
           EOF
 
@@ -98,4 +66,4 @@ jobs:
         with:
           name: Al-Juman-Laboratory-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: error
+          retention-days: 30
