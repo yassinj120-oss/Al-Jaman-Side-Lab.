@@ -19,56 +19,52 @@ jobs:
         with:
           node-version: 20
 
-      - name: Setup Java
-  uses: actions/setup-java@v4
-  with:
-    distribution: temurin
-    java-version: 21
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
 
-      - name: Create package.json
+      - name: Create package.json if missing
         run: |
-          cat > package.json << 'EOF'
+          if [ ! -f package.json ]; then
+            cat > package.json <<'EOF'
           {
             "name": "al-juman-lab",
             "version": "1.0.0",
             "private": true,
-            "description": "Al-Juman Laboratory App",
+            "description": "Al-Juman Al-Janabi Laboratory Management App",
             "scripts": {
-              "build": "echo Web app ready"
+              "build": "echo Web application ready"
+            },
+            "dependencies": {
+              "@capacitor/core": "^7.0.0"
+            },
+            "devDependencies": {
+              "@capacitor/cli": "^7.0.0",
+              "@capacitor/android": "^7.0.0"
             }
           }
           EOF
+          fi
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Install Capacitor
-        run: |
-          npm install @capacitor/core@7
-          npm install --save-dev @capacitor/cli@7
-          npm install @capacitor/android@7
+        run: npm install @capacitor/core @capacitor/cli @capacitor/android
 
       - name: Prepare web files
         run: |
-          mkdir -p www/css
-          mkdir -p www/js
-
+          mkdir -p www
           cp index.html www/index.html
+          cp style.css www/ 2>/dev/null || true
+          cp -r css www/ 2>/dev/null || true
+          cp -r js www/ 2>/dev/null || true
 
-          cp style.css www/css/style.css
-
-          cp app.js www/js/app.js
-          cp database.js www/js/database.js
-          cp tests.js www/js/tests.js
-          cp patients.js www/js/patients.js
-          cp reports.js www/js/reports.js
-          cp statistics.js www/js/statistics.js
-          cp settings.js www/js/settings.js
-          cp backup.js www/js/backup.js
-
-          cp manifest.json www/ 2>/dev/null || true
-          cp service-worker.js www/ 2>/dev/null || true
-
-      - name: Create Capacitor config
+      - name: Create Capacitor configuration
         run: |
-          cat > capacitor.config.json << 'EOF'
+          cat > capacitor.config.json <<'EOF'
           {
             "appId": "com.aljuman.lab",
             "appName": "Al-Juman Laboratory",
