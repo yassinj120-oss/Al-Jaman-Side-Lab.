@@ -25,16 +25,30 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Check project files
+            - name: Check project files
         run: |
           echo "Checking project files..."
           ls -la
 
-          test -f index.html
-          test -f package.json
-          test -f style.css
+          echo "Checking index files:"
+          for f in index.html "index(7).html" "index.html.1"; do
+            if [ -f "$f" ]; then
+              echo "FOUND: $f"
+            else
+              echo "NOT FOUND: $f"
+            fi
+          done
 
-          echo "Required files found."
+          echo "Checking other files:"
+          for f in package.json style.css app.js database.js; do
+            if [ -f "$f" ]; then
+              echo "FOUND: $f"
+            else
+              echo "NOT FOUND: $f"
+            fi
+          done
+
+          echo "File check completed."
 
       - name: Install dependencies
         run: |
