@@ -25,38 +25,37 @@ jobs:
           distribution: temurin
           java-version: 21
 
-            - name: Check project files
+      - name: Check project files
         run: |
           echo "Checking project files..."
           ls -la
+          echo "Files check completed."
 
-          echo "Checking index files:"
-          for f in index.html "index(7).html" "index.html.1"; do
-            if [ -f "$f" ]; then
-              echo "FOUND: $f"
-            else
-              echo "NOT FOUND: $f"
-            fi
-          done
-
-          echo "Checking other files:"
-          for f in package.json style.css app.js database.js; do
-            if [ -f "$f" ]; then
-              echo "FOUND: $f"
-            else
-              echo "NOT FOUND: $f"
-            fi
-          done
-
-          echo "File check completed."
+      - name: Create package.json if missing
+        run: |
+          if [ ! -f package.json ]; then
+            cat > package.json << 'EOF'
+          {
+            "name": "al-juman-lab",
+            "version": "1.0.0",
+            "private": true,
+            "description": "Al-Juman Laboratory App",
+            "dependencies": {
+              "@capacitor/core": "^7.0.0"
+            },
+            "devDependencies": {
+              "@capacitor/cli": "^7.0.0",
+              "@capacitor/android": "^7.0.0"
+            }
+          }
+          EOF
+          fi
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
       - name: Install Capacitor
-        run: |
-          npm install @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
+        run: npm install @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
 
       - name: Prepare web files
         run: |
@@ -65,16 +64,16 @@ jobs:
           cp index.html www/index.html
           cp style.css www/style.css
 
-          cp -r app.js www/ 2>/dev/null || true
-          cp -r database.js www/ 2>/dev/null || true
-          cp -r patients.js www/ 2>/dev/null || true
-          cp -r reports.js www/ 2>/dev/null || true
-          cp -r tests.js www/ 2>/dev/null || true
-          cp -r settings.js www/ 2>/dev/null || true
-          cp -r statistics.js www/ 2>/dev/null || true
-          cp -r backup.js www/ 2>/dev/null || true
-          cp -r service-worker.js www/ 2>/dev/null || true
-          cp -r manifest.json www/ 2>/dev/null || true
+          cp app.js www/ 2>/dev/null || true
+          cp database.js www/ 2>/dev/null || true
+          cp patients.js www/ 2>/dev/null || true
+          cp reports.js www/ 2>/dev/null || true
+          cp tests.js www/ 2>/dev/null || true
+          cp settings.js www/ 2>/dev/null || true
+          cp statistics.js www/ 2>/dev/null || true
+          cp backup.js www/ 2>/dev/null || true
+          cp service-worker.js www/ 2>/dev/null || true
+          cp manifest.json www/ 2>/dev/null || true
 
       - name: Create Capacitor config
         run: |
@@ -87,12 +86,10 @@ jobs:
           EOF
 
       - name: Add Android platform
-        run: |
-          npx cap add android
+        run: npx cap add android
 
       - name: Sync Android
-        run: |
-          npx cap sync android
+        run: npx cap sync android
 
       - name: Build APK
         run: |
