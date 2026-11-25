@@ -19,22 +19,29 @@ jobs:
         with:
           node-version: 20
 
-      - name: Setup Java 21
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
-      - name: Create package.json if missing
+
+      - name: Check project files
         run: |
-          if [ ! -f package.json ]; then
-            cat > package.json <<'EOF'
+          echo "Checking repository files..."
+          pwd
+          ls -la
+          test -f index.html
+
+      - name: Create package.json
+        run: |
+          cat > package.json <<'EOF'
           {
             "name": "al-juman-lab",
             "version": "1.0.0",
             "private": true,
             "description": "Al-Juman Al-Janabi Laboratory Management App",
             "scripts": {
-              "build": "echo Web application ready"
+              "build": "echo Web app ready"
             },
             "dependencies": {
               "@capacitor/core": "^7.0.0"
@@ -45,23 +52,25 @@ jobs:
             }
           }
           EOF
-          fi
+
       - name: Install dependencies
         run: npm install
-
-      - name: Install Capacitor
-        run: npm install @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
 
       - name: Prepare web files
         run: |
           mkdir -p www
-          cp index.html www/index.html
-          cp style.css www/style.css
-          cp -r app.js database.js patients.js reports.js tests.js settings.js statistics.js backup.js service-worker.js manifest.json www/ 2>/dev/null || true
 
-      - name: Create Capacitor config
+          cp index.html www/index.html
+
+          for file in app.js database.js patients.js reports.js tests.js settings.js statistics.js backup.js service-worker.js manifest.json style.css; do
+            if [ -f "$file" ]; then
+              cp "$file" www/
+            fi
+          done
+
+      - name: Create Capacitor configuration
         run: |
-          cat > capacitor.config.json << 'EOF'
+          cat > capacitor.config.json <<'EOF'
           {
             "appId": "com.aljuman.lab",
             "appName": "Al-Juman Laboratory",
