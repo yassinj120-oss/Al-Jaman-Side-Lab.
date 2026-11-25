@@ -24,7 +24,28 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-
+      - name: Create package.json if missing
+        run: |
+          if [ ! -f package.json ]; then
+            cat > package.json <<'EOF'
+          {
+            "name": "al-juman-lab",
+            "version": "1.0.0",
+            "private": true,
+            "description": "Al-Juman Al-Janabi Laboratory Management App",
+            "scripts": {
+              "build": "echo Web application ready"
+            },
+            "dependencies": {
+              "@capacitor/core": "^7.0.0"
+            },
+            "devDependencies": {
+              "@capacitor/cli": "^7.0.0",
+              "@capacitor/android": "^7.0.0"
+            }
+          }
+          EOF
+          fi
       - name: Install dependencies
         run: npm install
 
