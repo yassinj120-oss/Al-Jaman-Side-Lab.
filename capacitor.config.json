@@ -1,0 +1,13 @@
+{
+  "appId": "com.aljuman.lab",
+  "appName": "Al-Juman Laboratory",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#153c67",
+      "showSpinner": false
+    }
+  }
+}
