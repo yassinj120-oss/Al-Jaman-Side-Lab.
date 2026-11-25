@@ -25,21 +25,53 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Install dependencies
+      - name: Create package.json
+        run: |
+          cat > package.json << 'EOF'
+          {
+            "name": "al-juman-lab",
+            "version": "1.0.0",
+            "private": true,
+            "description": "Al-Juman Al-Janabi Laboratory App",
+            "scripts": {
+              "build": "echo Web app ready"
+            }
+          }
+          EOF
+
+      - name: Install Capacitor
         run: |
           npm install
           npm install @capacitor/core @capacitor/android
           npm install --save-dev @capacitor/cli
 
-      - name: Prepare web app
+      - name: Prepare web files
         run: |
-          mkdir -p www
-          cp index.html www/
-          cp -r css www/
-          cp -r js www/
-          cp manifest.json www/ 2>/dev/null || true
-          cp service-worker.js www/ 2>/dev/null || true
+          mkdir -p www/css
+          mkdir -p www/js
 
+          cp index.html www/
+
+          if [ -f style.css ]; then
+            cp style.css www/css/style.css
+          fi
+
+          for file in app.js database.js tests.js patients.js reports.js statistics.js settings.js backup.js; do
+            if [ -f "$file" ]; then
+              cp "$file" www/js/
+            fi
+          done
+
+          if [ -f manifest.json ]; then
+            cp manifest.json www/
+          fi
+
+          if [ -f service-worker.js ]; then
+            cp service-worker.js www/
+          fi
+
+      - name: Create Capacitor config
+        run: |
           cat > capacitor.config.json << 'EOF'
           {
             "appId": "com.aljuman.lab",
@@ -50,10 +82,7 @@ jobs:
           EOF
 
       - name: Add Android platform
-        run: |
-          if [ ! -d "android" ]; then
-            npx cap add android
-          fi
+        run: npx cap add android
 
       - name: Sync Android
         run: npx cap sync android
