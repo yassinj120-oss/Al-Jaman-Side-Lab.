@@ -1,1 +1,8 @@
-const KEY='aljuman_lab_db_v1';const DEFAULT={patients:[],reports:[],tests:[],settings:{labArabic:'مختبر الجمان الجانبي',labEnglish:'Al-Juman Al-Janabi Laboratory',labAddress:'الصقلاوية - الشهداء الثانية',labPhone:'07831216789',labLicense:'',labAuthorized:'',password:'1234',dark:false}};let db;function loadDB(){try{return Object.assign(JSON.parse(JSON.stringify(DEFAULT)),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{return JSON.parse(JSON.stringify(DEFAULT))}}db=loadDB();function saveDB(){localStorage.setItem(KEY,JSON.stringify(db));refreshAll()}function today(){return new Date().toISOString().slice(0,10)}function nextId(arr){let y=new Date().getFullYear(),n=arr.filter(x=>(x.id||x.reportNo||'').startsWith(y+'-')).length+1;return y+'-'+String(n).padStart(4,'0')}function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+const DB_KEY='aljuman_lab_db_v1';
+const defaultDB={patients:[],reports:[],tests:[],settings:{labArabic:'مختبر الجمان الجانبي',labEnglish:'Al-Juman Al-Janabi Laboratory',address:'الصقلاوية - الشهداء الثانية',phone:'07831216789',license:'',authorized:'',password:'1234',theme:'light'},counters:{patient:0,report:0}};
+function loadDB(){try{return Object.assign(defaultDB,JSON.parse(localStorage.getItem(DB_KEY)||'{}'));}catch(e){return structuredClone(defaultDB)}}
+let db=loadDB();
+function saveDB(){localStorage.setItem(DB_KEY,JSON.stringify(db));refreshAll();}
+function nextId(type){db.counters[type]=(db.counters[type]||0)+1;let year=new Date().getFullYear();return year+'-'+String(db.counters[type]).padStart(4,'0')}
+function todayISO(){return new Date().toISOString().slice(0,10)}
+function escapeHTML(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
