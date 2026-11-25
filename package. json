@@ -1,0 +1,16 @@
+{
+  "name": "al-juman-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Al-Juman Al-Janabi Laboratory Management App",
+  "scripts": {
+    "build": "echo Web application ready",
+    "android": "npx cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0"
+  }
+}
