@@ -1,3241 +1,391 @@
-/* =========================
-   AL-JUMAN LABORATORY
-   Responsive Medical UI
-   ========================= */
-
-:root {
-  --primary: #1765c1;
-  --primary-dark: #124d91;
-  --primary-light: #eaf3ff;
-  --accent: #19a7a1;
-  --bg: #f4f7fb;
-  --surface: #ffffff;
-  --text: #17243a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --danger: #dc3545;
-  --success: #198754;
-  --warning: #f59e0b;
-  --shadow: 0 4px 18px rgba(15, 35, 65, 0.06);
-}
+/* =========================================
+   AL-JUMAN AL-JANABI LABORATORY
+   FINAL STYLE.CSS
+   A4 REPORT POSITION & PRINT FIX
+   ========================================= */
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+html,
 body {
-  margin: 0;
-  font-family: Arial, Tahoma, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  direction: rtl;
-  min-height: 100vh;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 10px 15px;
-  cursor: pointer;
-  background: var(--primary);
-  color: #fff;
-  transition: 0.2s ease;
-  margin: 2px;
-}
-
-button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-button.secondary {
-  background: #e9eef5;
-  color: var(--text);
-}
-
-button.secondary:hover {
-  background: #dce5ef;
-}
-
-button.danger {
-  background: var(--danger);
-}
-
-button.success {
-  background: var(--success);
-}
-
-button.warning {
-  background: var(--warning);
-  color: #111;
-}
-
-/* =========================
-   APP LAYOUT
-   ========================= */
-
-.app {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-}
-
-/* =========================
-   SIDEBAR
-   ========================= */
-
-.sidebar {
-  width: 250px;
-  min-width: 250px;
-  background: linear-gradient(180deg, #123c68, #0e2d4d);
-  color: white;
-  padding: 20px 14px;
-  position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  z-index: 20;
-}
-
-.sidebar h2 {
-  font-size: 20px;
-  margin: 5px 0 25px;
-  text-align: center;
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.sidebar nav button {
-  width: 100%;
-  text-align: right;
-  background: transparent;
-  color: white;
-  border-radius: 9px;
-  margin: 0;
-  padding: 12px;
-}
-
-.sidebar nav button:hover,
-.sidebar button.active {
-  background: rgba(255, 255, 255, 0.14);
-}
-
-.sidebar nav button.active {
-  border-right: 4px solid #55d5d0;
-}
-
-/* =========================
-   MAIN CONTENT
-   ========================= */
-
-main {
-  margin-right: 250px;
-  width: calc(100% - 250px);
-  padding: 22px;
-  min-width: 0;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--surface);
-  padding: 16px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-
-header h1 {
-  flex: 1;
-  font-size: 22px;
-  margin: 0;
-}
-
-header button {
-  flex-shrink: 0;
-}
-
-/* =========================
-   SECTIONS
-   ========================= */
-
-.section {
-  display: none;
-}
-
-.section.active {
-  display: block;
-}
-
-.section h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 25px;
-}
-
-/* =========================
-   PANELS & CARDS
-   ========================= */
-
-.panel,
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow);
-}
-
-.panel h3 {
-  margin-top: 0;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.card {
-  position: relative;
-  color: var(--muted);
-  border-top: 4px solid var(--primary);
-  min-height: 120px;
-}
-
-.card:nth-child(2) {
-  border-top-color: var(--accent);
-}
-
-.card:nth-child(3) {
-  border-top-color: #7c3aed;
-}
-
-.card:nth-child(4) {
-  border-top-color: #f59e0b;
-}
-
-.card strong {
-  display: block;
-  font-size: 30px;
-  color: var(--primary);
-  margin-top: 12px;
-  font-weight: bold;
-}
-
-/* =========================
-   FORMS
-   ========================= */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.grid label {
-  display: block;
-  font-weight: 600;
-  color: var(--text);
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  margin-top: 6px;
-  background: var(--surface);
-  color: var(--text);
-  outline: none;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(23, 101, 193, 0.1);
-}
-
-textarea {
-  resize: vertical;
-  min-height: 90px;
-}
-
-.age {
-  display: flex;
-  gap: 8px;
-}
-
-.age select {
-  width: 120px;
-  flex-shrink: 0;
-}
-
-/* =========================
-   TEST PICKER
-   ========================= */
-
-.picker {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  max-height: 300px;
-  overflow-y: auto;
-  margin: 15px 0;
-}
-
-.choice {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  padding: 10px;
-  border-radius: 9px;
-  color: var(--text);
-}
-
-.choice input {
-  width: auto;
-  margin-left: 8px;
-}
-
-.choice:hover {
-  border-color: var(--primary);
-}
-
-/* =========================
-   SELECTED TESTS
-   ========================= */
-
-.selected {
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin: 10px 0;
-  background: var(--surface);
-}
-
-.result-row {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr auto;
-  gap: 8px;
-  margin: 8px 0;
-  align-items: center;
-}
-
-/* =========================
-   TABLES
-   ========================= */
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--surface);
-}
-
-.table td,
-.table th {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
-  text-align: right;
-}
-
-.table th {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  font-weight: bold;
-}
-
-.table tr:hover {
-  background: rgba(23, 101, 193, 0.04);
-}
-
-/* =========================
-   REPORT FLAGS
-   ========================= */
-
-.flag-high {
-  color: #dc2626;
-  font-weight: bold;
-}
-
-.flag-low {
-  color: #2563eb;
-  font-weight: bold;
-}
-
-.flag-normal {
-  color: #16a34a;
-  font-weight: bold;
-}
-
-/* =========================
-   LOGIN / LOCK SCREEN
-   ========================= */
-
-.lock {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #123c68, #1765c1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 9999;
-}
-
-.lockbox {
-  background: white;
-  color: #17243a;
-  padding: 30px;
-  border-radius: 18px;
-  text-align: center;
-  width: min(420px, 100%);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-}
-
-.lockbox h1 {
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.lockbox input {
-  text-align: center;
-  margin: 15px 0;
-}
-
-.lockbox button {
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* =========================
-   MODALS
-   ========================= */
-
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  overflow-y: auto;
-  z-index: 500;
-  padding: 20px;
-}
-
-.modal.show {
-  display: block;
-}
-
-.modalbox {
-  background: white;
-  color: #111;
-  padding: 25px;
-  max-width: 950px;
-  margin: 20px auto;
-  border-radius: 15px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-}
-
-/* =========================
-   REPORT
-   ========================= */
-
-.report {
-  padding: 20px;
-  background: white;
-  color: #111;
-  border-radius: 8px;
-}
-
-.report table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.report td,
-.report th {
-  border: 1px solid #ccc;
-  padding: 9px;
-  text-align: center;
-}
-
-/* =========================
-   ACTION BUTTONS
-   ========================= */
-
-.actions {
-  margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.actions button {
-  margin: 0;
-}
-
-/* =========================
-   DARK MODE
-   ========================= */
-
-.dark {
-  background: #0b1220;
-  color: #e9eef6;
-}
-
-.dark main,
-.dark .panel,
-.dark .card,
-.dark header,
-.dark .selected {
-  background: #1b2638;
-  color: #e9eef6;
-  border-color: #334155;
-}
-
-.dark input,
-.dark select,
-.dark textarea {
-  background: #101827;
-  color: white;
-  border-color: #334155;
-}
-
-.dark .sidebar {
-  background: linear-gradient(180deg, #081c32, #0b1220);
-}
-
-.dark .choice {
-  background: #101827;
-  color: white;
-  border-color: #334155;
-}
-
-.dark .table th {
-  background: #263a56;
-  color: #e9eef6;
-}
-
-.dark .table td {
-  border-color: #334155;
-}
-
-/* =========================
-   MOBILE MENU
-   ========================= */
-
-.menu-toggle {
-  display: none;
-}
-
-/* =========================
-   TABLET
-   ========================= */
-
-@media (max-width: 1000px) {
-  .sidebar {
-    width: 220px;
-    min-width: 220px;
-  }
-
-  main {
-    margin-right: 220px;
-    width: calc(100% - 220px);
-    padding: 15px;
-  }
-
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* =========================
-   MOBILE
-   ========================= */
-
-@media (max-width: 700px) {
-
-  body {
-    font-size: 14px;
-  }
-
-  .app {
-    display: block;
-  }
-
-  /* Sidebar mobile */
-  .sidebar {
-    display: none;
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 280px;
-    min-width: 0;
-    max-width: 85%;
-    z-index: 1000;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
-  }
-
-  .sidebar.open {
-    display: block;
-  }
-
-  main {
     margin: 0;
-    width: 100%;
-    padding: 12px;
-  }
-
-  header {
-    padding: 12px;
-    border-radius: 12px;
-    flex-wrap: wrap;
-  }
-
-  header h1 {
-    font-size: 18px;
-  }
-
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    font-size: 20px;
     padding: 0;
-  }
-
-  /* Dashboard */
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .card {
-    padding: 13px;
-    min-height: 105px;
-    font-size: 13px;
-  }
-
-  .card strong {
-    font-size: 24px;
-  }
-
-  /* Forms */
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  input,
-  select,
-  textarea {
-    padding: 11px;
-    font-size: 16px;
-  }
-
-  .age {
     width: 100%;
-  }
-
-  .age select {
-    width: 110px;
-  }
-
-  /* Test list */
-  .picker {
-    grid-template-columns: 1fr;
-    max-height: 250px;
-  }
-
-  /* Results */
-  .result-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-  }
-
-  /* Buttons */
-  button {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-
-  .actions {
-    flex-direction: column;
-  }
-
-  .actions button {
-    width: 100%;
-  }
-
-  /* Table horizontal scrolling */
-  .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .table {
-    min-width: 600px;
-  }
-
-  /* Panels */
-  .panel,
-  .card {
-    margin-bottom: 12px;
-  }
-
-  /* Modal */
-  .modal {
-    padding: 10px;
-  }
-
-  .modalbox {
-    margin: 10px auto;
-    padding: 15px;
-    width: 100%;
-  }
-
-  /* Section headings */
-  .section h2 {
-    font-size: 22px;
-  }
+    min-height: 100%;
+    font-family: Arial, sans-serif;
 }
 
-/* =========================
-   SMALL MOBILE
-   ========================= */
+/* ===============================
+   REPORT PREVIEW
+================================ */
 
-@media (max-width: 380px) {
-
-  main {
-    padding: 8px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  header h1 {
-    font-size: 16px;
-  }
-
-  .card strong {
-    font-size: 22px;
-  }
-
-  button {
-    font-size: 13px;
-  }
+#reportPreview {
+    width: 100%;
+    background: #000;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
 }
 
-/* =========================
-   PRINT
-   ========================= */
+.report-sheet {
+    position: relative !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: white !important;
+}
+
+/* ===============================
+   BACKGROUND IMAGE
+================================ */
+
+.report-background {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: fill !important;
+    display: block !important;
+    visibility: visible !important;
+    z-index: 1 !important;
+}
+
+/* ===============================
+   REPORT CONTENT CONTAINER
+================================ */
+
+.report-content {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    z-index: 2 !important;
+    background: transparent !important;
+}
+
+/* ===============================
+   PATIENT INFORMATION
+================================ */
+
+.report-patient-info {
+    position: absolute !important;
+
+    /* تنزيل معلومات المريض إلى داخل النموذج */
+    top: 17% !important;
+
+    left: 8% !important;
+    right: 8% !important;
+    width: 84% !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 4px 10px !important;
+
+    padding: 5px 8px !important;
+    margin: 0 !important;
+
+    background: rgba(255, 255, 255, 0.94) !important;
+
+    border-radius: 4px !important;
+
+    font-size: 9pt !important;
+    line-height: 1.5 !important;
+
+    color: #111 !important;
+
+    direction: ltr !important;
+    text-align: left !important;
+
+    z-index: 10 !important;
+
+    box-sizing: border-box !important;
+}
+
+/* Patient information items */
+
+.report-patient-info .info-item {
+    min-width: 0 !important;
+    width: auto !important;
+
+    margin: 0 !important;
+    padding: 2px 3px !important;
+
+    flex: none !important;
+
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+}
+
+/* ===============================
+   RESULTS TABLE
+================================ */
+
+.report-results {
+    position: absolute !important;
+
+    /* مكان بداية جدول النتائج */
+    top: 23% !important;
+
+    left: 8% !important;
+    width: 84% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+
+    table-layout: fixed !important;
+
+    background: rgba(255, 255, 255, 0.94) !important;
+
+    direction: ltr !important;
+    text-align: center !important;
+
+    font-size: 8pt !important;
+
+    z-index: 10 !important;
+}
+
+/* Table cells */
+
+.report-results th,
+.report-results td {
+    border: 1px solid #555 !important;
+
+    padding: 4px 5px !important;
+
+    text-align: center !important;
+    vertical-align: middle !important;
+
+    font-size: 8pt !important;
+    line-height: 1.3 !important;
+
+    color: #111 !important;
+
+    background: transparent !important;
+
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+}
+
+/* Table header */
+
+.report-results th {
+    font-weight: bold !important;
+}
+
+/* ===============================
+   CATEGORY / GROUP ROWS
+================================ */
+
+.report-results tr.report-group,
+.report-results tr.category-row {
+    display: table-row !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.report-results tr.report-group td,
+.report-results tr.category-row td {
+    background: #d8eafa !important;
+    color: #102d4f !important;
+
+    font-weight: bold !important;
+
+    text-align: left !important;
+
+    padding: 5px 7px !important;
+
+    border-top: 1px solid #286a9d !important;
+    border-bottom: 1px solid #286a9d !important;
+
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+/* ===============================
+   SCREEN PREVIEW
+================================ */
+
+@media screen {
+
+    #reportPreview {
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+    }
+
+    .report-sheet {
+        transform-origin: top center !important;
+    }
+}
+
+/* ===============================
+   PRINT / SAVE PDF
+================================ */
 
 @media print {
 
-  body {
-    background: white !important;
-    color: black !important;
-  }
+    @page {
+        size: A4 portrait;
+        margin: 0 !important;
+    }
 
-  .sidebar,
-  header,
-  button,
-  .actions,
-  .menu-toggle {
-    display: none !important;
-  }
+    html,
+    body {
+        width: 210mm !important;
+        height: 297mm !important;
 
-  main {
-    margin: 0 !important;
-    width: 100% !important;
-    padding: 0 !important;
-  }
+        margin: 0 !important;
+        padding: 0 !important;
 
-  .section {
-    display: none !important;
-  }
+        overflow: hidden !important;
 
-  .modal.show {
-    position: static;
-    display: block;
-    background: white;
-    padding: 0;
-  }
+        background: white !important;
+    }
 
-  .modalbox {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-  }
+    body * {
+        visibility: hidden !important;
+    }
 
-  .report {
-    padding: 0;
-  }
+    #reportPreview,
+    #reportPreview * {
+        visibility: visible !important;
+    }
 
-  @page {
-    size: A4;
-    margin: 10mm;
-  }
-}/* =========================
-   AL-JUMAN LABORATORY
-   Responsive Medical UI
-   ========================= */
+    #reportPreview {
+        position: absolute !important;
 
-:root {
-  --primary: #1765c1;
-  --primary-dark: #124d91;
-  --primary-light: #eaf3ff;
-  --accent: #19a7a1;
-  --bg: #f4f7fb;
-  --surface: #ffffff;
-  --text: #17243a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --danger: #dc3545;
-  --success: #198754;
-  --warning: #f59e0b;
-  --shadow: 0 4px 18px rgba(15, 35, 65, 0.06);
-}
+        top: 0 !important;
+        left: 0 !important;
 
-* {
-  box-sizing: border-box;
-}
+        width: 210mm !important;
+        height: 297mm !important;
 
-html {
-  scroll-behavior: smooth;
-}
+        margin: 0 !important;
+        padding: 0 !important;
 
-body {
-  margin: 0;
-  font-family: Arial, Tahoma, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  direction: rtl;
-  min-height: 100vh;
-}
+        overflow: hidden !important;
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
+        background: white !important;
+    }
 
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 10px 15px;
-  cursor: pointer;
-  background: var(--primary);
-  color: #fff;
-  transition: 0.2s ease;
-  margin: 2px;
-}
+    .report-sheet {
+        position: relative !important;
 
-button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-}
+        top: 0 !important;
+        left: 0 !important;
 
-button:active {
-  transform: scale(0.98);
-}
+        width: 210mm !important;
+        height: 297mm !important;
 
-button.secondary {
-  background: #e9eef5;
-  color: var(--text);
-}
+        min-height: 297mm !important;
+        max-height: 297mm !important;
 
-button.secondary:hover {
-  background: #dce5ef;
-}
+        margin: 0 !important;
+        padding: 0 !important;
 
-button.danger {
-  background: var(--danger);
-}
+        transform: none !important;
 
-button.success {
-  background: var(--success);
-}
+        overflow: hidden !important;
 
-button.warning {
-  background: var(--warning);
-  color: #111;
-}
+        background: white !important;
 
-/* =========================
-   APP LAYOUT
-   ========================= */
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+    }
 
-.app {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-}
+    .report-background {
+        position: absolute !important;
 
-/* =========================
-   SIDEBAR
-   ========================= */
+        top: 0 !important;
+        left: 0 !important;
 
-.sidebar {
-  width: 250px;
-  min-width: 250px;
-  background: linear-gradient(180deg, #123c68, #0e2d4d);
-  color: white;
-  padding: 20px 14px;
-  position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  z-index: 20;
-}
+        width: 210mm !important;
+        height: 297mm !important;
 
-.sidebar h2 {
-  font-size: 20px;
-  margin: 5px 0 25px;
-  text-align: center;
-}
+        object-fit: fill !important;
 
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
+        display: block !important;
+        visibility: visible !important;
+    }
 
-.sidebar nav button {
-  width: 100%;
-  text-align: right;
-  background: transparent;
-  color: white;
-  border-radius: 9px;
-  margin: 0;
-  padding: 12px;
-}
+    .report-content {
+        position: absolute !important;
 
-.sidebar nav button:hover,
-.sidebar button.active {
-  background: rgba(255, 255, 255, 0.14);
-}
+        top: 0 !important;
+        left: 0 !important;
 
-.sidebar nav button.active {
-  border-right: 4px solid #55d5d0;
-}
+        width: 210mm !important;
+        height: 297mm !important;
 
-/* =========================
-   MAIN CONTENT
-   ========================= */
+        z-index: 2 !important;
+    }
 
-main {
-  margin-right: 250px;
-  width: calc(100% - 250px);
-  padding: 22px;
-  min-width: 0;
-}
+    /* Patient information position in PDF */
 
-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--surface);
-  padding: 16px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
+    .report-patient-info {
+        top: 17% !important;
 
-header h1 {
-  flex: 1;
-  font-size: 22px;
-  margin: 0;
-}
+        left: 8% !important;
+        right: 8% !important;
+        width: 84% !important;
 
-header button {
-  flex-shrink: 0;
-}
+        background: rgba(255, 255, 255, 0.94) !important;
 
-/* =========================
-   SECTIONS
-   ========================= */
+        font-size: 9pt !important;
 
-.section {
-  display: none;
-}
+        z-index: 10 !important;
+    }
 
-.section.active {
-  display: block;
-}
+    /* Results table position in PDF */
 
-.section h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 25px;
-}
+    .report-results {
+        top: 23% !important;
 
-/* =========================
-   PANELS & CARDS
-   ========================= */
+        left: 8% !important;
+        width: 84% !important;
 
-.panel,
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow);
-}
+        font-size: 8pt !important;
 
-.panel h3 {
-  margin-top: 0;
-}
+        z-index: 10 !important;
+    }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
+    .report-results th,
+    .report-results td {
+        padding: 4px 5px !important;
+        background: transparent !important;
+    }
 
-.card {
-  position: relative;
-  color: var(--muted);
-  border-top: 4px solid var(--primary);
-  min-height: 120px;
-}
+    .report-results tr.report-group td,
+    .report-results tr.category-row td {
+        background: #d8eafa !important;
+        color: #102d4f !important;
 
-.card:nth-child(2) {
-  border-top-color: var(--accent);
-}
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
 
-.card:nth-child(3) {
-  border-top-color: #7c3aed;
-}
+    /* Hide application interface */
 
-.card:nth-child(4) {
-  border-top-color: #f59e0b;
-}
-
-.card strong {
-  display: block;
-  font-size: 30px;
-  color: var(--primary);
-  margin-top: 12px;
-  font-weight: bold;
-}
-
-/* =========================
-   FORMS
-   ========================= */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.grid label {
-  display: block;
-  font-weight: 600;
-  color: var(--text);
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  margin-top: 6px;
-  background: var(--surface);
-  color: var(--text);
-  outline: none;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(23, 101, 193, 0.1);
-}
-
-textarea {
-  resize: vertical;
-  min-height: 90px;
-}
-
-.age {
-  display: flex;
-  gap: 8px;
-}
-
-.age select {
-  width: 120px;
-  flex-shrink: 0;
-}
-
-/* =========================
-   TEST PICKER
-   ========================= */
-
-.picker {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  max-height: 300px;
-  overflow-y: auto;
-  margin: 15px 0;
-}
-
-.choice {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  padding: 10px;
-  border-radius: 9px;
-  color: var(--text);
-}
-
-.choice input {
-  width: auto;
-  margin-left: 8px;
-}
-
-.choice:hover {
-  border-color: var(--primary);
-}
-
-/* =========================
-   SELECTED TESTS
-   ========================= */
-
-.selected {
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin: 10px 0;
-  background: var(--surface);
-}
-
-.result-row {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr auto;
-  gap: 8px;
-  margin: 8px 0;
-  align-items: center;
-}
-
-/* =========================
-   TABLES
-   ========================= */
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--surface);
-}
-
-.table td,
-.table th {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
-  text-align: right;
-}
-
-.table th {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  font-weight: bold;
-}
-
-.table tr:hover {
-  background: rgba(23, 101, 193, 0.04);
-}
-
-/* =========================
-   REPORT FLAGS
-   ========================= */
-
-.flag-high {
-  color: #dc2626;
-  font-weight: bold;
-}
-
-.flag-low {
-  color: #2563eb;
-  font-weight: bold;
-}
-
-.flag-normal {
-  color: #16a34a;
-  font-weight: bold;
-}
-
-/* =========================
-   LOGIN / LOCK SCREEN
-   ========================= */
-
-.lock {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #123c68, #1765c1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 9999;
-}
-
-.lockbox {
-  background: white;
-  color: #17243a;
-  padding: 30px;
-  border-radius: 18px;
-  text-align: center;
-  width: min(420px, 100%);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-}
-
-.lockbox h1 {
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.lockbox input {
-  text-align: center;
-  margin: 15px 0;
-}
-
-.lockbox button {
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* =========================
-   MODALS
-   ========================= */
-
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  overflow-y: auto;
-  z-index: 500;
-  padding: 20px;
-}
-
-.modal.show {
-  display: block;
-}
-
-.modalbox {
-  background: white;
-  color: #111;
-  padding: 25px;
-  max-width: 950px;
-  margin: 20px auto;
-  border-radius: 15px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-}
-
-/* =========================
-   REPORT
-   ========================= */
-
-.report {
-  padding: 20px;
-  background: white;
-  color: #111;
-  border-radius: 8px;
-}
-
-.report table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.report td,
-.report th {
-  border: 1px solid #ccc;
-  padding: 9px;
-  text-align: center;
-}
-
-/* =========================
-   ACTION BUTTONS
-   ========================= */
-
-.actions {
-  margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.actions button {
-  margin: 0;
-}
-
-/* =========================
-   DARK MODE
-   ========================= */
-
-.dark {
-  background: #0b1220;
-  color: #e9eef6;
-}
-
-.dark main,
-.dark .panel,
-.dark .card,
-.dark header,
-.dark .selected {
-  background: #1b2638;
-  color: #e9eef6;
-  border-color: #334155;
-}
-
-.dark input,
-.dark select,
-.dark textarea {
-  background: #101827;
-  color: white;
-  border-color: #334155;
-}
-
-.dark .sidebar {
-  background: linear-gradient(180deg, #081c32, #0b1220);
-}
-
-.dark .choice {
-  background: #101827;
-  color: white;
-  border-color: #334155;
-}
-
-.dark .table th {
-  background: #263a56;
-  color: #e9eef6;
-}
-
-.dark .table td {
-  border-color: #334155;
-}
-
-/* =========================
-   MOBILE MENU
-   ========================= */
-
-.menu-toggle {
-  display: none;
-}
-
-/* =========================
-   TABLET
-   ========================= */
-
-@media (max-width: 1000px) {
-  .sidebar {
-    width: 220px;
-    min-width: 220px;
-  }
-
-  main {
-    margin-right: 220px;
-    width: calc(100% - 220px);
-    padding: 15px;
-  }
-
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* =========================
-   MOBILE
-   ========================= */
-
-@media (max-width: 700px) {
-
-  body {
-    font-size: 14px;
-  }
-
-  .app {
-    display: block;
-  }
-
-  /* Sidebar mobile */
-  .sidebar {
-    display: none;
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 280px;
-    min-width: 0;
-    max-width: 85%;
-    z-index: 1000;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
-  }
-
-  .sidebar.open {
-    display: block;
-  }
-
-  main {
-    margin: 0;
-    width: 100%;
-    padding: 12px;
-  }
-
-  header {
-    padding: 12px;
-    border-radius: 12px;
-    flex-wrap: wrap;
-  }
-
-  header h1 {
-    font-size: 18px;
-  }
-
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    font-size: 20px;
-    padding: 0;
-  }
-
-  /* Dashboard */
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .card {
-    padding: 13px;
-    min-height: 105px;
-    font-size: 13px;
-  }
-
-  .card strong {
-    font-size: 24px;
-  }
-
-  /* Forms */
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  input,
-  select,
-  textarea {
-    padding: 11px;
-    font-size: 16px;
-  }
-
-  .age {
-    width: 100%;
-  }
-
-  .age select {
-    width: 110px;
-  }
-
-  /* Test list */
-  .picker {
-    grid-template-columns: 1fr;
-    max-height: 250px;
-  }
-
-  /* Results */
-  .result-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-  }
-
-  /* Buttons */
-  button {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-
-  .actions {
-    flex-direction: column;
-  }
-
-  .actions button {
-    width: 100%;
-  }
-
-  /* Table horizontal scrolling */
-  .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .table {
-    min-width: 600px;
-  }
-
-  /* Panels */
-  .panel,
-  .card {
-    margin-bottom: 12px;
-  }
-
-  /* Modal */
-  .modal {
-    padding: 10px;
-  }
-
-  .modalbox {
-    margin: 10px auto;
-    padding: 15px;
-    width: 100%;
-  }
-
-  /* Section headings */
-  .section h2 {
-    font-size: 22px;
-  }
-}
-
-/* =========================
-   SMALL MOBILE
-   ========================= */
-
-@media (max-width: 380px) {
-
-  main {
-    padding: 8px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  header h1 {
-    font-size: 16px;
-  }
-
-  .card strong {
-    font-size: 22px;
-  }
-
-  button {
-    font-size: 13px;
-  }
-}
-
-/* =========================
-   PRINT
-   ========================= */
-
-@media print {
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
-  .sidebar,
-  header,
-  button,
-  .actions,
-  .menu-toggle {
-    display: none !important;
-  }
-
-  main {
-    margin: 0 !important;
-    width: 100% !important;
-    padding: 0 !important;
-  }
-
-  .section {
-    display: none !important;
-  }
-
-  .modal.show {
-    position: static;
-    display: block;
-    background: white;
-    padding: 0;
-  }
-
-  .modalbox {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-  }
-
-  .report {
-    padding: 0;
-  }
-
-  @page {
-    size: A4;
-    margin: 10mm;
-  }
-}/* =========================
-   AL-JUMAN LABORATORY
-   Responsive Medical UI
-   ========================= */
-
-:root {
-  --primary: #1765c1;
-  --primary-dark: #124d91;
-  --primary-light: #eaf3ff;
-  --accent: #19a7a1;
-  --bg: #f4f7fb;
-  --surface: #ffffff;
-  --text: #17243a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --danger: #dc3545;
-  --success: #198754;
-  --warning: #f59e0b;
-  --shadow: 0 4px 18px rgba(15, 35, 65, 0.06);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Tahoma, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  direction: rtl;
-  min-height: 100vh;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 10px 15px;
-  cursor: pointer;
-  background: var(--primary);
-  color: #fff;
-  transition: 0.2s ease;
-  margin: 2px;
-}
-
-button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-button.secondary {
-  background: #e9eef5;
-  color: var(--text);
-}
-
-button.secondary:hover {
-  background: #dce5ef;
-}
-
-button.danger {
-  background: var(--danger);
-}
-
-button.success {
-  background: var(--success);
-}
-
-button.warning {
-  background: var(--warning);
-  color: #111;
-}
-
-/* =========================
-   APP LAYOUT
-   ========================= */
-
-.app {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-}
-
-/* =========================
-   SIDEBAR
-   ========================= */
-
-.sidebar {
-  width: 250px;
-  min-width: 250px;
-  background: linear-gradient(180deg, #123c68, #0e2d4d);
-  color: white;
-  padding: 20px 14px;
-  position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  z-index: 20;
-}
-
-.sidebar h2 {
-  font-size: 20px;
-  margin: 5px 0 25px;
-  text-align: center;
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.sidebar nav button {
-  width: 100%;
-  text-align: right;
-  background: transparent;
-  color: white;
-  border-radius: 9px;
-  margin: 0;
-  padding: 12px;
-}
-
-.sidebar nav button:hover,
-.sidebar button.active {
-  background: rgba(255, 255, 255, 0.14);
-}
-
-.sidebar nav button.active {
-  border-right: 4px solid #55d5d0;
-}
-
-/* =========================
-   MAIN CONTENT
-   ========================= */
-
-main {
-  margin-right: 250px;
-  width: calc(100% - 250px);
-  padding: 22px;
-  min-width: 0;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--surface);
-  padding: 16px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-
-header h1 {
-  flex: 1;
-  font-size: 22px;
-  margin: 0;
-}
-
-header button {
-  flex-shrink: 0;
-}
-
-/* =========================
-   SECTIONS
-   ========================= */
-
-.section {
-  display: none;
-}
-
-.section.active {
-  display: block;
-}
-
-.section h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 25px;
-}
-
-/* =========================
-   PANELS & CARDS
-   ========================= */
-
-.panel,
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow);
-}
-
-.panel h3 {
-  margin-top: 0;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.card {
-  position: relative;
-  color: var(--muted);
-  border-top: 4px solid var(--primary);
-  min-height: 120px;
-}
-
-.card:nth-child(2) {
-  border-top-color: var(--accent);
-}
-
-.card:nth-child(3) {
-  border-top-color: #7c3aed;
-}
-
-.card:nth-child(4) {
-  border-top-color: #f59e0b;
-}
-
-.card strong {
-  display: block;
-  font-size: 30px;
-  color: var(--primary);
-  margin-top: 12px;
-  font-weight: bold;
-}
-
-/* =========================
-   FORMS
-   ========================= */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.grid label {
-  display: block;
-  font-weight: 600;
-  color: var(--text);
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  margin-top: 6px;
-  background: var(--surface);
-  color: var(--text);
-  outline: none;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(23, 101, 193, 0.1);
-}
-
-textarea {
-  resize: vertical;
-  min-height: 90px;
-}
-
-.age {
-  display: flex;
-  gap: 8px;
-}
-
-.age select {
-  width: 120px;
-  flex-shrink: 0;
-}
-
-/* =========================
-   TEST PICKER
-   ========================= */
-
-.picker {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  max-height: 300px;
-  overflow-y: auto;
-  margin: 15px 0;
-}
-
-.choice {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  padding: 10px;
-  border-radius: 9px;
-  color: var(--text);
-}
-
-.choice input {
-  width: auto;
-  margin-left: 8px;
-}
-
-.choice:hover {
-  border-color: var(--primary);
-}
-
-/* =========================
-   SELECTED TESTS
-   ========================= */
-
-.selected {
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin: 10px 0;
-  background: var(--surface);
-}
-
-.result-row {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr auto;
-  gap: 8px;
-  margin: 8px 0;
-  align-items: center;
-}
-
-/* =========================
-   TABLES
-   ========================= */
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--surface);
-}
-
-.table td,
-.table th {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
-  text-align: right;
-}
-
-.table th {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  font-weight: bold;
-}
-
-.table tr:hover {
-  background: rgba(23, 101, 193, 0.04);
-}
-
-/* =========================
-   REPORT FLAGS
-   ========================= */
-
-.flag-high {
-  color: #dc2626;
-  font-weight: bold;
-}
-
-.flag-low {
-  color: #2563eb;
-  font-weight: bold;
-}
-
-.flag-normal {
-  color: #16a34a;
-  font-weight: bold;
-}
-
-/* =========================
-   LOGIN / LOCK SCREEN
-   ========================= */
-
-.lock {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #123c68, #1765c1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 9999;
-}
-
-.lockbox {
-  background: white;
-  color: #17243a;
-  padding: 30px;
-  border-radius: 18px;
-  text-align: center;
-  width: min(420px, 100%);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-}
-
-.lockbox h1 {
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.lockbox input {
-  text-align: center;
-  margin: 15px 0;
-}
-
-.lockbox button {
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* =========================
-   MODALS
-   ========================= */
-
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  overflow-y: auto;
-  z-index: 500;
-  padding: 20px;
-}
-
-.modal.show {
-  display: block;
-}
-
-.modalbox {
-  background: white;
-  color: #111;
-  padding: 25px;
-  max-width: 950px;
-  margin: 20px auto;
-  border-radius: 15px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-}
-
-/* =========================
-   REPORT
-   ========================= */
-
-.report {
-  padding: 20px;
-  background: white;
-  color: #111;
-  border-radius: 8px;
-}
-
-.report table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.report td,
-.report th {
-  border: 1px solid #ccc;
-  padding: 9px;
-  text-align: center;
-}
-
-/* =========================
-   ACTION BUTTONS
-   ========================= */
-
-.actions {
-  margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.actions button {
-  margin: 0;
-}
-
-/* =========================
-   DARK MODE
-   ========================= */
-
-.dark {
-  background: #0b1220;
-  color: #e9eef6;
-}
-
-.dark main,
-.dark .panel,
-.dark .card,
-.dark header,
-.dark .selected {
-  background: #1b2638;
-  color: #e9eef6;
-  border-color: #334155;
-}
-
-.dark input,
-.dark select,
-.dark textarea {
-  background: #101827;
-  color: white;
-  border-color: #334155;
-}
-
-.dark .sidebar {
-  background: linear-gradient(180deg, #081c32, #0b1220);
-}
-
-.dark .choice {
-  background: #101827;
-  color: white;
-  border-color: #334155;
-}
-
-.dark .table th {
-  background: #263a56;
-  color: #e9eef6;
-}
-
-.dark .table td {
-  border-color: #334155;
-}
-
-/* =========================
-   MOBILE MENU
-   ========================= */
-
-.menu-toggle {
-  display: none;
-}
-
-/* =========================
-   TABLET
-   ========================= */
-
-@media (max-width: 1000px) {
-  .sidebar {
-    width: 220px;
-    min-width: 220px;
-  }
-
-  main {
-    margin-right: 220px;
-    width: calc(100% - 220px);
-    padding: 15px;
-  }
-
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* =========================
-   MOBILE
-   ========================= */
-
-@media (max-width: 700px) {
-
-  body {
-    font-size: 14px;
-  }
-
-  .app {
-    display: block;
-  }
-
-  /* Sidebar mobile */
-  .sidebar {
-    display: none;
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 280px;
-    min-width: 0;
-    max-width: 85%;
-    z-index: 1000;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
-  }
-
-  .sidebar.open {
-    display: block;
-  }
-
-  main {
-    margin: 0;
-    width: 100%;
-    padding: 12px;
-  }
-
-  header {
-    padding: 12px;
-    border-radius: 12px;
-    flex-wrap: wrap;
-  }
-
-  header h1 {
-    font-size: 18px;
-  }
-
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    font-size: 20px;
-    padding: 0;
-  }
-
-  /* Dashboard */
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .card {
-    padding: 13px;
-    min-height: 105px;
-    font-size: 13px;
-  }
-
-  .card strong {
-    font-size: 24px;
-  }
-
-  /* Forms */
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  input,
-  select,
-  textarea {
-    padding: 11px;
-    font-size: 16px;
-  }
-
-  .age {
-    width: 100%;
-  }
-
-  .age select {
-    width: 110px;
-  }
-
-  /* Test list */
-  .picker {
-    grid-template-columns: 1fr;
-    max-height: 250px;
-  }
-
-  /* Results */
-  .result-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-  }
-
-  /* Buttons */
-  button {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-
-  .actions {
-    flex-direction: column;
-  }
-
-  .actions button {
-    width: 100%;
-  }
-
-  /* Table horizontal scrolling */
-  .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .table {
-    min-width: 600px;
-  }
-
-  /* Panels */
-  .panel,
-  .card {
-    margin-bottom: 12px;
-  }
-
-  /* Modal */
-  .modal {
-    padding: 10px;
-  }
-
-  .modalbox {
-    margin: 10px auto;
-    padding: 15px;
-    width: 100%;
-  }
-
-  /* Section headings */
-  .section h2 {
-    font-size: 22px;
-  }
-}
-
-/* =========================
-   SMALL MOBILE
-   ========================= */
-
-@media (max-width: 380px) {
-
-  main {
-    padding: 8px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  header h1 {
-    font-size: 16px;
-  }
-
-  .card strong {
-    font-size: 22px;
-  }
-
-  button {
-    font-size: 13px;
-  }
-}
-
-/* =========================
-   PRINT
-   ========================= */
-
-@media print {
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
-  .sidebar,
-  header,
-  button,
-  .actions,
-  .menu-toggle {
-    display: none !important;
-  }
-
-  main {
-    margin: 0 !important;
-    width: 100% !important;
-    padding: 0 !important;
-  }
-
-  .section {
-    display: none !important;
-  }
-
-  .modal.show {
-    position: static;
-    display: block;
-    background: white;
-    padding: 0;
-  }
-
-  .modalbox {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-  }
-
-  .report {
-    padding: 0;
-  }
-
-  @page {
-    size: A4;
-    margin: 10mm;
-  }
-}/* =========================
-   AL-JUMAN LABORATORY
-   Responsive Medical UI
-   ========================= */
-
-:root {
-  --primary: #1765c1;
-  --primary-dark: #124d91;
-  --primary-light: #eaf3ff;
-  --accent: #19a7a1;
-  --bg: #f4f7fb;
-  --surface: #ffffff;
-  --text: #17243a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --danger: #dc3545;
-  --success: #198754;
-  --warning: #f59e0b;
-  --shadow: 0 4px 18px rgba(15, 35, 65, 0.06);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Tahoma, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  direction: rtl;
-  min-height: 100vh;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 10px 15px;
-  cursor: pointer;
-  background: var(--primary);
-  color: #fff;
-  transition: 0.2s ease;
-  margin: 2px;
-}
-
-button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-button.secondary {
-  background: #e9eef5;
-  color: var(--text);
-}
-
-button.secondary:hover {
-  background: #dce5ef;
-}
-
-button.danger {
-  background: var(--danger);
-}
-
-button.success {
-  background: var(--success);
-}
-
-button.warning {
-  background: var(--warning);
-  color: #111;
-}
-
-/* =========================
-   APP LAYOUT
-   ========================= */
-
-.app {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-}
-
-/* =========================
-   SIDEBAR
-   ========================= */
-
-.sidebar {
-  width: 250px;
-  min-width: 250px;
-  background: linear-gradient(180deg, #123c68, #0e2d4d);
-  color: white;
-  padding: 20px 14px;
-  position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  z-index: 20;
-}
-
-.sidebar h2 {
-  font-size: 20px;
-  margin: 5px 0 25px;
-  text-align: center;
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.sidebar nav button {
-  width: 100%;
-  text-align: right;
-  background: transparent;
-  color: white;
-  border-radius: 9px;
-  margin: 0;
-  padding: 12px;
-}
-
-.sidebar nav button:hover,
-.sidebar button.active {
-  background: rgba(255, 255, 255, 0.14);
-}
-
-.sidebar nav button.active {
-  border-right: 4px solid #55d5d0;
-}
-
-/* =========================
-   MAIN CONTENT
-   ========================= */
-
-main {
-  margin-right: 250px;
-  width: calc(100% - 250px);
-  padding: 22px;
-  min-width: 0;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--surface);
-  padding: 16px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-
-header h1 {
-  flex: 1;
-  font-size: 22px;
-  margin: 0;
-}
-
-header button {
-  flex-shrink: 0;
-}
-
-/* =========================
-   SECTIONS
-   ========================= */
-
-.section {
-  display: none;
-}
-
-.section.active {
-  display: block;
-}
-
-.section h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 25px;
-}
-
-/* =========================
-   PANELS & CARDS
-   ========================= */
-
-.panel,
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow);
-}
-
-.panel h3 {
-  margin-top: 0;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.card {
-  position: relative;
-  color: var(--muted);
-  border-top: 4px solid var(--primary);
-  min-height: 120px;
-}
-
-.card:nth-child(2) {
-  border-top-color: var(--accent);
-}
-
-.card:nth-child(3) {
-  border-top-color: #7c3aed;
-}
-
-.card:nth-child(4) {
-  border-top-color: #f59e0b;
-}
-
-.card strong {
-  display: block;
-  font-size: 30px;
-  color: var(--primary);
-  margin-top: 12px;
-  font-weight: bold;
-}
-
-/* =========================
-   FORMS
-   ========================= */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.grid label {
-  display: block;
-  font-weight: 600;
-  color: var(--text);
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  margin-top: 6px;
-  background: var(--surface);
-  color: var(--text);
-  outline: none;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(23, 101, 193, 0.1);
-}
-
-textarea {
-  resize: vertical;
-  min-height: 90px;
-}
-
-.age {
-  display: flex;
-  gap: 8px;
-}
-
-.age select {
-  width: 120px;
-  flex-shrink: 0;
-}
-
-/* =========================
-   TEST PICKER
-   ========================= */
-
-.picker {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  max-height: 300px;
-  overflow-y: auto;
-  margin: 15px 0;
-}
-
-.choice {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  padding: 10px;
-  border-radius: 9px;
-  color: var(--text);
-}
-
-.choice input {
-  width: auto;
-  margin-left: 8px;
-}
-
-.choice:hover {
-  border-color: var(--primary);
-}
-
-/* =========================
-   SELECTED TESTS
-   ========================= */
-
-.selected {
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin: 10px 0;
-  background: var(--surface);
-}
-
-.result-row {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr auto;
-  gap: 8px;
-  margin: 8px 0;
-  align-items: center;
-}
-
-/* =========================
-   TABLES
-   ========================= */
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--surface);
-}
-
-.table td,
-.table th {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
-  text-align: right;
-}
-
-.table th {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  font-weight: bold;
-}
-
-.table tr:hover {
-  background: rgba(23, 101, 193, 0.04);
-}
-
-/* =========================
-   REPORT FLAGS
-   ========================= */
-
-.flag-high {
-  color: #dc2626;
-  font-weight: bold;
-}
-
-.flag-low {
-  color: #2563eb;
-  font-weight: bold;
-}
-
-.flag-normal {
-  color: #16a34a;
-  font-weight: bold;
-}
-
-/* =========================
-   LOGIN / LOCK SCREEN
-   ========================= */
-
-.lock {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #123c68, #1765c1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 9999;
-}
-
-.lockbox {
-  background: white;
-  color: #17243a;
-  padding: 30px;
-  border-radius: 18px;
-  text-align: center;
-  width: min(420px, 100%);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-}
-
-.lockbox h1 {
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.lockbox input {
-  text-align: center;
-  margin: 15px 0;
-}
-
-.lockbox button {
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* =========================
-   MODALS
-   ========================= */
-
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  overflow-y: auto;
-  z-index: 500;
-  padding: 20px;
-}
-
-.modal.show {
-  display: block;
-}
-
-.modalbox {
-  background: white;
-  color: #111;
-  padding: 25px;
-  max-width: 950px;
-  margin: 20px auto;
-  border-radius: 15px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-}
-
-/* =========================
-   REPORT
-   ========================= */
-
-.report {
-  padding: 20px;
-  background: white;
-  color: #111;
-  border-radius: 8px;
-}
-
-.report table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.report td,
-.report th {
-  border: 1px solid #ccc;
-  padding: 9px;
-  text-align: center;
-}
-
-/* =========================
-   ACTION BUTTONS
-   ========================= */
-
-.actions {
-  margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.actions button {
-  margin: 0;
-}
-
-/* =========================
-   DARK MODE
-   ========================= */
-
-.dark {
-  background: #0b1220;
-  color: #e9eef6;
-}
-
-.dark main,
-.dark .panel,
-.dark .card,
-.dark header,
-.dark .selected {
-  background: #1b2638;
-  color: #e9eef6;
-  border-color: #334155;
-}
-
-.dark input,
-.dark select,
-.dark textarea {
-  background: #101827;
-  color: white;
-  border-color: #334155;
-}
-
-.dark .sidebar {
-  background: linear-gradient(180deg, #081c32, #0b1220);
-}
-
-.dark .choice {
-  background: #101827;
-  color: white;
-  border-color: #334155;
-}
-
-.dark .table th {
-  background: #263a56;
-  color: #e9eef6;
-}
-
-.dark .table td {
-  border-color: #334155;
-}
-
-/* =========================
-   MOBILE MENU
-   ========================= */
-
-.menu-toggle {
-  display: none;
-}
-
-/* =========================
-   TABLET
-   ========================= */
-
-@media (max-width: 1000px) {
-  .sidebar {
-    width: 220px;
-    min-width: 220px;
-  }
-
-  main {
-    margin-right: 220px;
-    width: calc(100% - 220px);
-    padding: 15px;
-  }
-
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* =========================
-   MOBILE
-   ========================= */
-
-@media (max-width: 700px) {
-
-  body {
-    font-size: 14px;
-  }
-
-  .app {
-    display: block;
-  }
-
-  /* Sidebar mobile */
-  .sidebar {
-    display: none;
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 280px;
-    min-width: 0;
-    max-width: 85%;
-    z-index: 1000;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
-  }
-
-  .sidebar.open {
-    display: block;
-  }
-
-  main {
-    margin: 0;
-    width: 100%;
-    padding: 12px;
-  }
-
-  header {
-    padding: 12px;
-    border-radius: 12px;
-    flex-wrap: wrap;
-  }
-
-  header h1 {
-    font-size: 18px;
-  }
-
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    font-size: 20px;
-    padding: 0;
-  }
-
-  /* Dashboard */
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .card {
-    padding: 13px;
-    min-height: 105px;
-    font-size: 13px;
-  }
-
-  .card strong {
-    font-size: 24px;
-  }
-
-  /* Forms */
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  input,
-  select,
-  textarea {
-    padding: 11px;
-    font-size: 16px;
-  }
-
-  .age {
-    width: 100%;
-  }
-
-  .age select {
-    width: 110px;
-  }
-
-  /* Test list */
-  .picker {
-    grid-template-columns: 1fr;
-    max-height: 250px;
-  }
-
-  /* Results */
-  .result-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-  }
-
-  /* Buttons */
-  button {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-
-  .actions {
-    flex-direction: column;
-  }
-
-  .actions button {
-    width: 100%;
-  }
-
-  /* Table horizontal scrolling */
-  .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .table {
-    min-width: 600px;
-  }
-
-  /* Panels */
-  .panel,
-  .card {
-    margin-bottom: 12px;
-  }
-
-  /* Modal */
-  .modal {
-    padding: 10px;
-  }
-
-  .modalbox {
-    margin: 10px auto;
-    padding: 15px;
-    width: 100%;
-  }
-
-  /* Section headings */
-  .section h2 {
-    font-size: 22px;
-  }
-}
-
-/* =========================
-   SMALL MOBILE
-   ========================= */
-
-@media (max-width: 380px) {
-
-  main {
-    padding: 8px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  header h1 {
-    font-size: 16px;
-  }
-
-  .card strong {
-    font-size: 22px;
-  }
-
-  button {
-    font-size: 13px;
-  }
-}
-
-/* =========================
-   PRINT
-   ========================= */
-
-@media print {
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
-  .sidebar,
-  header,
-  button,
-  .actions,
-  .menu-toggle {
-    display: none !important;
-  }
-
-  main {
-    margin: 0 !important;
-    width: 100% !important;
-    padding: 0 !important;
-  }
-
-  .section {
-    display: none !important;
-  }
-
-  .modal.show {
-    position: static;
-    display: block;
-    background: white;
-    padding: 0;
-  }
-
-  .modalbox {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-  }
-
-  .report {
-    padding: 0;
-  }
-
-  @page {
-    size: A4;
-    margin: 10mm;
-  }
+    .sidebar,
+    .topbar,
+    .no-print,
+    nav,
+    footer,
+    button,
+    .page-header {
+        display: none !important;
+    }
 }
